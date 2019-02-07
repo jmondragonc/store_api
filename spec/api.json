@@ -1,0 +1,335 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Пример создания REST API на Echo framework",
+    "title": "Echo-REST-API.",
+    "contact": {
+      "email": "jmondragonc@gmail.com"
+    },
+    "version": "0.0.1"
+  },
+  "host": "localhost",
+  "basePath": "/api",
+  "paths": {
+    "/categories": {
+      "get": {
+        "description": "Api Store",
+        "operationId": "getCategories",
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Category"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Categories",
+        "operationId": "createCategory",
+        "parameters": [
+          {
+            "description": "store categories",
+            "name": "category",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          },
+          "400": {
+            "description": "Bad request param"
+          }
+        }
+      }
+    },
+    "/categories/{id}": {
+      "get": {
+        "description": "Id category",
+        "operationId": "getCategory",
+        "parameters": [
+          {
+            "type": "int",
+            "description": "Id category",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          },
+          "400": {
+            "description": "Bad request param `id`"
+          },
+          "404": {
+            "description": "Category `id`= not found"
+          }
+        }
+      },
+      "put": {
+        "description": "Update category",
+        "operationId": "updateCategory",
+        "parameters": [
+          {
+            "type": "int",
+            "description": "id cat",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "category",
+            "name": "category",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Response"
+          },
+          "400": {
+            "description": "Bad request param"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete",
+        "operationId": "deleteCategory",
+        "parameters": [
+          {
+            "type": "int",
+            "description": "id cat",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Cat not found"
+          },
+          "400": {
+            "description": "Bad request param `id`"
+          },
+          "404": {
+            "description": "Category `id`= not found"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "description": "Get products",
+        "operationId": "getProducts",
+        "parameters": [
+          {
+            "type": "int",
+            "description": "id prod",
+            "name": "category",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Create prod",
+        "operationId": "createProduct",
+        "parameters": [
+          {
+            "description": "description",
+            "name": "product",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "400": {
+            "description": "Bad request param"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "description": "Get product",
+        "operationId": "getProduct",
+        "parameters": [
+          {
+            "type": "int",
+            "description": "id prod",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "400": {
+            "description": "Bad request param `id`"
+          },
+          "404": {
+            "description": "Product `id`= not found"
+          }
+        }
+      },
+      "put": {
+        "description": "Update product",
+        "operationId": "updateProduct",
+        "parameters": [
+          {
+            "type": "int",
+            "description": "id prod",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "description",
+            "name": "product",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "responses"
+          },
+          "400": {
+            "description": "Bad request param"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete",
+        "operationId": "deleteProduct",
+        "parameters": [
+          {
+            "type": "int",
+            "description": "id prod",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Product not found"
+          },
+          "400": {
+            "description": "Bad request param `id`"
+          },
+          "404": {
+            "description": "Product `id`= not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Category": {
+      "description": "Object",
+      "type": "object",
+      "title": "object",
+      "properties": {
+        "id": {
+          "description": "id",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Id"
+        },
+        "name": {
+          "description": "name",
+          "type": "string",
+          "x-go-name": "Name"
+        }
+      },
+      "x-go-package": "echo-rest-api/model"
+    },
+    "Product": {
+      "description": "Description",
+      "type": "object",
+      "title": "Title",
+      "properties": {
+        "category": {
+          "description": "id cat",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Category"
+        },
+        "desc": {
+          "description": "desription",
+          "type": "string",
+          "x-go-name": "Description"
+        },
+        "id": {
+          "description": "id desc",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Id"
+        },
+        "name": {
+          "description": "name",
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "price": {
+          "description": "price",
+          "type": "number",
+          "format": "double",
+          "x-go-name": "Price"
+        }
+      },
+      "x-go-package": "echo-rest-api/model"
+    }
+  }
+}
